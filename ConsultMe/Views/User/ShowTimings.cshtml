@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewData["Title"] = "Doctor Timings";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+@model ConsultMe.Domain.ViewModels.ShowTimingsViewModel
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-bar">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-md-12 col-12">
+                    <nav aria-label="breadcrumb" class="page-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Booking</li>
+                        </ol>
+                    </nav>
+                    <h2 class="breadcrumb-title">Booking</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Breadcrumb -->
+    <!-- Page Content -->
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="booking-doc-info">
+                                <a href="#" class="booking-doc-img">
+                                    <img src="../assets/img/doctors/doctor-thumb-02.jpg" alt="User Image">
+                                </a>
+                                <div class="booking-info">
+                                    <h4><a href="#">Dr. @Model.DoctorName</a></h4>
+                                    <input type="hidden" id="doctorid" name="doctorid" value="@Model.DoctorId" />
+                                    <input type="hidden" id="clinicid" name="clinicid" value="@Model.ClinicId" />
+                                    <div class="rating">
+                                        @for (int index = 1; index <= @Model.doctorViewModel.Ratings; index++)
+                                        {
+                                            <i class="fas fa-star filled"></i>
+                                        }
+                                        @for (int index = 5; index > @Model.doctorViewModel.Ratings; index--)
+                                        {
+                                            <i class="fas fa-star"></i>
+                                        }
+                                        <span class="d-inline-block average-rating">@Model.doctorViewModel.Ratings</span>
+                                    </div>
+                                    <p class="text-muted mb-0"><i class="fas fa-map-marker-alt"></i> @Model.doctorViewModel.Address, @Model.doctorViewModel.Area, @Model.doctorViewModel.City, @Model.doctorViewModel.State</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-sm-4 col-md-6">
+                            <h4 class="mb-1">@DateTime.Now.Day @DateTime.Now.ToString("MMMM"), @DateTime.Now.Year</h4>
+                            <p class="text-muted">@DateTime.Now.DayOfWeek.ToString()</p>
+                        </div>
+                        <div class="col-12 col-sm-8 col-md-6 text-sm-right">
+                            <input type="text" id="datepicker">
+                        </div>
+                    </div>
+                    <!-- Schedule Widget -->
+                    <div id="divschedule" class="card booking-schedule schedule-widget">
+                    </div>
+                    <!-- /Schedule Widget -->
+
+                    <!-- Patient and Symptons Widget -->                    
+                    <div id="divpatient">
+                    </div>                    
+                    <!-- /Patient and Symptons Widget -->
+
+                    <!-- Submit Section -->
+                    <div class="submit-section proceed-btn text-right">
+                        <a href="#" id="bookappointment" name="bookappointment" class="btn btn-primary submit-btn">Proceed to Book Appointment</a>
+                    </div>
+                    <!-- /Submit Section -->
+                    <form id="frmbooking" method="post" action="BookingResult">
+                        <input type="hidden" id="bookingId" name="bookingId" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="~/js/ShowTimings.js"></script>

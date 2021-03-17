@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewData["Title"] = "Customer Timings";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@model ConsultMe.Domain.ViewModels.DoctorTimingsViewModel
+@Html.HiddenFor(i => i.DoctorId)
+
+<div class="content container-fluid">
+    <div class="col-12 col-md-12">
+        <div id="clinictimingsform" class="row">
+        </div>
+        <div class="row">
+            <div class="table-responsive" id="divcustomertiming"></div>
+        </div>
+
+    </div>
+</div>
+
+<script src="~/js/CustomerTimings.js"></script>

@@ -1,0 +1,45 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model List<ConsultMe.Domain.ViewModels.DoctorViewModel>;
+
+<table id="customertable" class="datatable table table-hover table-center mb-0">
+    <thead>
+        <tr>
+            <th class="column-title">Doctor name </th>
+            <th class="column-title">Specialization </th>
+            <th class="column-title">Specialist </th>
+            <th class="column-title">Area </th>
+            <th class="column-title">City </th>
+            <th class="column-title no-link last">
+                <span class="nobr">Action</span>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var doctor in Model)
+        {
+        <tr>
+            <td>@doctor.Name</td>
+            <td>@doctor.Specialization</td>
+            <td>@doctor.Specialist</td>
+            <td>@doctor.Area</td>
+            <td>@doctor.City</td>
+            <td><a href="#" id="linktimings" name="linktimings" onclick="Showtimings(@doctor.Id)">Asso. timings</a></td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<div class="modal fade custom-modal" id="add_time_slot">
+    <div class="modal-dialog modal-dialog-centered">
+        <div id="divclinictimings" class="modal-content">
+
+        </div>
+    </div>
+</div>
+<script>
+    function Showtimings(customerid) {
+        window.location = "/Admin/DoctorTimings?id=" + customerid;
+    }
+</script>

@@ -1,0 +1,84 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model ConsultMe.Domain.ViewModels.ClinicViewModel
+<div class="modal-header">
+    <h4 class="modal-title" id="myModalLabel">@ViewData["PageTitle"]</h4>
+    <button type="button" class="close" data-dismiss="modal">
+        <span aria-hidden="true">×</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="x_panel">        
+        <div class="x_content">
+
+            <!-- start form for validation -->
+            @using (Html.BeginForm())
+            {
+                @Html.HiddenFor(i => i.Id)
+                <div class="form-group form-focus">
+                    <label class="focus-label">Clinic Name * :</label>
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @type = "text" })
+                </div>
+
+                <div class="form-group form-focus">
+                    <label class="focus-label">Address :</label>
+                    @Html.TextBoxFor(m => m.Address, new { @class = "form-control", @type = "text" })
+                </div>
+
+                <div class="form-group form-focus">
+                    <label class="focus-label">Contact number * :</label>
+                    @Html.TextBoxFor(m => m.Contactnumber, new { @class = "form-control", @type = "text" })
+                </div>
+
+                <div class="form-group form-focus">
+                    <label class="focus-label">Area * :</label>
+                    @Html.TextBoxFor(m => m.Area, new { @class = "form-control", @type = "text" })
+                </div>
+
+                <div class="form-group form-focus">
+                    <label class="focus-label">City :</label>
+                    @Html.TextBoxFor(m => m.City, new { @class = "form-control", @type = "text" })
+                </div>
+
+                <div class="form-group form-focus">
+                    <label class="focus-label">State * :</label>
+                    @Html.TextBoxFor(m => m.State, new { @class = "form-control", @type = "text" })
+                </div>
+            }
+                <!-- end form for validations -->
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-primary" id="saveclinicbutton" name="saveclinicbutton">Save changes</button>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {        
+        $('#saveclinicbutton').click(function () {
+            var jsondata = {
+                Id: $('#Id').val(),
+                Name: $('#Name').val(),
+                Address: $('#Address').val(),
+                Contactnumber: $('#Contactnumber').val(),
+                Area: $('#Area').val(),
+                City: $('#City').val(),
+                State: $('#State').val()
+            };
+            $.ajax({
+                type: 'Get',
+                url: 'Saveclinic',
+                data: jsondata,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    if (data == true) {
+                        $('#myclinicModal').modal('toggle');
+                        bindClinicData();
+                    }
+                }
+            });
+        });
+    });
+</script>

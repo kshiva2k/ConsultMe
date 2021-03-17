@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\Appointment.cs" />
+    <Compile Remove="Models\Clinic.cs" />
+    <Compile Remove="Models\consultmeContext.cs" />
+    <Compile Remove="Models\Customer.cs" />
+    <Compile Remove="Models\Customertimings.cs" />
+    <Compile Remove="Models\Feedback.cs" />
+    <Compile Remove="Models\Lookupspecialist.cs" />
+    <Compile Remove="Models\Lookupusertype.cs" />
+    <Compile Remove="Models\Patient.cs" />
+    <Compile Remove="Models\Subscriptions.cs" />
+    <Compile Remove="Models\User.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="3.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ConsultMe.Data\ConsultMe.Data.csproj" />
+    <ProjectReference Include="..\ConsultMe.Domain\ConsultMe.Domain.csproj" />
+    <ProjectReference Include="..\ConsultMe.Service\ConsultMe.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
+</Project>

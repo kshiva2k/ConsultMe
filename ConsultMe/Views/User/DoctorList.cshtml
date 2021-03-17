@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewData["Title"] = "Doctor(s) List";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+@model ConsultMe.Domain.ViewModels.DoctorSearchListViewModel
+<!-- Breadcrumb -->
+<div class="breadcrumb-bar">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-md-8 col-12">
+                <h2 class="breadcrumb-title">@Model.DoctorCount doctor(s) found on : @Model.ClinicName</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Breadcrumb -->
+<!-- Page Content -->
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 col-lg-8 col-xl-12">
+                @foreach (var customer in Model.Doctors)
+                {
+                    <!-- Doctor Widget -->
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="doctor-widget">
+                                <div class="doc-info-left">
+                                    <div class="doctor-img">
+                                        <a href="#">
+                                            <img src="../assets/img/doctors/doctor-thumb-01.jpg" class="img-fluid" alt="User Image">
+                                        </a>
+                                    </div>
+                                    <div class="doc-info-cont">
+                                        <h4 class="doc-name"><a href="#">@customer.Name</a></h4>
+                                        <p class="doc-speciality">@customer.Specialization</p>
+                                        <h5 class="doc-department"><img src="../assets/img/specialities/specialities-05.png" class="img-fluid" alt="Speciality">@customer.Specialist</h5>
+                                        <div class="rating">
+                                            @for (int index = 1; index <= customer.Ratings; index++)
+                                            {
+                                                <i class="fas fa-star filled"></i>
+                                            }
+                                            @for (int index = 5; index > customer.Ratings; index--)
+                                            {
+                                                <i class="fas fa-star"></i>
+                                            }
+                                            <span class="d-inline-block average-rating">(@customer.Ratings)</span>
+                                        </div>
+                                        <div class="clinic-details">
+                                            <p class="doc-location"><i class="fas fa-map-marker-alt"></i> @customer.City, @customer.State</p>
+                                            @*<ul class="clinic-gallery">
+                                        <li>
+                                            <a href="assets/img/features/feature-01.jpg" data-fancybox="gallery">
+                                                <img src="assets/img/features/feature-01.jpg" alt="Feature">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="assets/img/features/feature-02.jpg" data-fancybox="gallery">
+                                                <img src="assets/img/features/feature-02.jpg" alt="Feature">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="assets/img/features/feature-03.jpg" data-fancybox="gallery">
+                                                <img src="assets/img/features/feature-03.jpg" alt="Feature">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="assets/img/features/feature-04.jpg" data-fancybox="gallery">
+                                                <img src="assets/img/features/feature-04.jpg" alt="Feature">
+                                            </a>
+                                        </li>
+                                    </ul>*@
+                                        </div>
+                                        @*<div class="clinic-services">
+                                    <span>Dental Fillings</span>
+                                    <span> Whitneing</span>
+                                </div>*@
+                                    </div>
+                                </div>
+                                <div class="doc-info-right">
+                                    <div class="clini-infos">
+                                        <ul>
+                                            <li><i class="far fa-thumbs-up"></i> 98%</li>
+                                            <li><i class="far fa-comment"></i> @customer.Ratings Feedback</li>
+                                            <li><i class="fas fa-map-marker-alt"></i> @customer.City, @customer.State</li>
+                                            @*<li><i class="far fa-money-bill-alt"></i> $300 - $1000 <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i> </li>*@
+                                        </ul>
+                                    </div>
+                                    <div class="clinic-booking">
+                                        <a class="view-pro-btn" href="#">View Profile</a>
+                                        @*@if (customer.Subscriber == 1)
+                                        {*@
+                                            <a class="apt-btn" href="#" onclick="ShowTimings(@customer.Id, '@customer.Name')">Book Appointment</a>
+                                        @*}*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Doctor Widget -->
+                }
+            </div>
+            <form id="formdoctor" name="formdoctor" method="post" action="ShowTimings">
+                <input type="hidden" id="clinic" name="clinic" value="@Model.ClinicId" />
+                <input type="hidden" id="clinicname" name="clinicname" value="@Model.ClinicName" />
+                <input type="hidden" id="doctor" name="doctor" />
+                <input type="hidden" id="doctorname" name="doctorname" />
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    
+        function ShowTimings(doctorid, name) {
+            $('#doctor').val(doctorid);
+            $('#doctorname').val(name);
+            $('#formdoctor').submit();
+        }
+    
+</script>

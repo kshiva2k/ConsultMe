@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewData["Title"] = "Book Appointment";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<!-- jQuery UI -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="~/assets/plugins/jquery-ui/jquery-ui.js"></script>
+<style>
+    .ui-autocomplete-category {
+        font-weight: bold;
+        padding: .2em .4em;
+        margin: .8em 0 .2em;
+        line-height: 1.5;
+    }
+</style>
+<!-- Home Banner -->
+<section class="section section-search">
+    <div class="container-fluid">
+        <div class="banner-wrapper">
+            <div class="banner-header text-center">
+                <h1>Search Doctor, Make an Appointment</h1>
+                <p>Discover the best doctors, clinic & hospital the city nearest to you.</p>
+            </div>
+
+            <!-- Search -->
+            <div class="search-box">
+                <form id="formappointment" method="post" action="">
+                    <div class="form-group search-location">
+                        <input id="area" name="area" class="form-control" />
+                        <span class="form-text">Based on your Location</span>
+                    </div>
+                    <div class="form-group search-info">
+                        <input id="specialist" name="specialist" class="form-control" />
+                        <input id="searchid" name="searchid" type="hidden" />
+                        <input id="searchtype" name="searchtype" type="hidden" />
+                        <span class="form-text">Search based on specialist, clinic ...</span>
+                    </div>
+                    <button type="button" class="btn btn-primary search-btn" id="search" name="search"><i class="fas fa-search"></i> <span>Search</span></button>
+                </form>
+            </div>
+            <!-- /Search -->
+
+        </div>
+    </div>
+</section>
+<!-- /Home Banner -->
+<script src="~/js/Appointment.js"></script>

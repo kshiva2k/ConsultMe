@@ -1,0 +1,141 @@
+﻿@{
+    ViewData["Title"] = "PatientReview";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+@model ConsultMe.Domain.ViewModels.AppointmentViewModel
+<div class="row">
+    <div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
+
+        <!-- Profile Sidebar -->
+        <div class="profile-sidebar">
+            <div class="widget-profile pro-widget-content">
+                <div class="profile-info-widget">
+                    <a href="#" class="booking-doc-img">
+                        <img src="~/assets/img/doctors/doctor-thumb-02.jpg" alt="User Image">
+                    </a>
+                    <div class="profile-det-info">
+                        @{
+                            ConsultMe.Domain.ViewModels.DoctorViewModel customermodel = (ConsultMe.Domain.ViewModels.DoctorViewModel)ViewData["Customer"];
+                            <h3>Dr. @customermodel.Name</h3>
+
+                            <div class="patient-details">
+                                <h5 class="mb-0">@customermodel.Specialist, @customermodel.Specialization</h5>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="dashboard-widget">
+                <nav class="dashboard-menu">
+                    <ul>
+                        <li class="active">
+                            <a href="/Customer/Dashboard">
+                                <i class="fas fa-columns"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-calendar-check"></i>
+                                <span>Appointments</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-hourglass-start"></i>
+                                <span>Schedule Timings</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-star"></i>
+                                <span>Reviews</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-user-cog"></i>
+                                <span>Profile Settings</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-lock"></i>
+                                <span>Change Password</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span>Logout</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /Profile Sidebar -->
+
+    </div>
+    <div class="col-md-7 col-lg-8 col-xl-9">
+
+        <!-- Basic Information -->
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Patient Sheet</h4>
+                <div class="row form-row">
+                    <div class="col-md-12">
+                        <form id="formreview" method="post" action="/Customer/PatientReview">
+                            <div class="form-group mb-0">
+                                <label>Booking #: @Model.BookingNumber</label>
+                                <input type="hidden" value="@Model.Id" name="apptid" id="apptid" />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Patient Name</label>
+                            <input type="text" id="patientname" name="patientname" class="form-control" value="@Model.PatientName" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Age</label>
+                            <input type="text" id="age" name="age" class="form-control" value="@Model.Age" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group mb-0">
+                            <label>Symptons</label>
+                            <textarea id="symptoms" name="symptoms" class="form-control" rows="5" readonly>@Model.Symptoms</textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Booking type</label>
+                            <input type="text" id="bookingtype" name="bookingtype" class="form-control" value="@Model.AppointmentType" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" id="btnreview" name="btnreview">Complete Review</button>
+                            <button type="button" class="btn btn-primary" id="btncancel" name="btncancel">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Basic Information -->
+    </div>
+</div>
+<script src="~/js/Appointment.js"></script>
+<script>
+    $('#btncancel').click(function () {
+        window.location = "/Customer/Dashboard";
+    });
+    $('#btnreview').click(function () {
+        UpdateAppointment();
+    });
+</script>

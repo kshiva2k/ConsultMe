@@ -1,0 +1,66 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model ConsultMe.Domain.ViewModels.AppointmentViewModel
+<!-- start form for validation -->
+    <form id="appointment-form" data-parsley-validate name="appointment-form">
+        @Html.HiddenFor(i => i.Id)
+        @Html.HiddenFor(i => i.Userid)
+        <label for="Name">Booking number * :</label>
+        @Html.TextBoxFor(m => m.BookingNumber, new { @class = "form-control", @type = "text" })
+
+        <label for="Area">Area *:</label>
+        <select id="Area" name="Area" class="form-control" required="required">
+            <option value="">Choose..</option>
+            @foreach (var item in (List<string>)ViewData["Area"])
+            {
+                <option value="@item">@item</option>
+            }
+        </select>
+
+        <label for="Specialist">Specialist *:</label>
+        <select id="Specialist" name="Specialist" class="form-control" required="required">
+            <option value="">Choose..</option>
+            @foreach (var item in (List<ConsultMe.Domain.ViewModels.LookupViewModel>)ViewData["Specialists"])
+            {
+                <option value="@item.Id">@item.Name</option>
+            }
+        </select>
+
+        <label for="Doctor">Doctor *:</label>
+        <select id="Doctor" name="Doctor" class="form-control" required="required">
+            <option value="">Choose..</option>
+        </select>
+
+        <label for="Appointmentdate">Appointment date *:</label>
+        <div class="form-group">
+            <div class='input-group date' id='appointmentDatepicker'>
+                @Html.TextBoxFor(m => m.Appointmentdate, new { @class = "form-control", @type = "text" })
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+
+        <label for="Timing">Timing *:</label>
+        <select id="Timing" name="Timing" class="form-control" required="required">
+            <option value="">Choose..</option>
+        </select>
+
+        <label for="Patient">Patient *:</label>
+        <select id="Patient" name="Patient" class="form-control" required="required">
+            <option value="">Choose..</option>
+            @if (ViewData["Patient"] != null)
+            {
+                @foreach (var item in (List<ConsultMe.Domain.ViewModels.PatientViewModel>)ViewData["Patient"])
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+            }
+        </select>
+
+        <label for="Symptoms">Symptoms :</label>
+        @Html.TextBoxFor(m => m.Symptoms, new { @class = "form-control", @type = "text" })
+
+    </form>
+<!-- end form for validations -->

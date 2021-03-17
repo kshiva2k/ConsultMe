@@ -1,0 +1,33 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model List<ConsultMe.Domain.ViewModels.PatientViewModel>;
+
+<table class="table table-striped jambo_table">
+    <thead>
+        <tr class="headings">
+            @*<th>
+            <input type="checkbox" id="check-all" class="flat">
+        </th>*@
+            <th class="column-title">Patient name </th>
+            <th class="column-title">Ref No. </th>
+            <th class="column-title">Age </th>
+            <th class="column-title">Gender </th>
+            <th class="column-title no-link last">
+                <span class="nobr">Action</span>
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var patient in Model)
+        {
+            <tr class="even pointer">                
+                <td>@patient.Name</td>
+                <td>@patient.RefNo</td>
+                <td>@patient.Age</td>
+                <td>@patient.Gender</td>
+            </tr>
+        }
+    </tbody>
+</table>

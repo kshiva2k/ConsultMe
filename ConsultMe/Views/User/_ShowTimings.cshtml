@@ -1,0 +1,61 @@
+﻿@model List<ConsultMe.Domain.ViewModels.DaywiseTimingsViewModel>
+    <!-- Schedule Header -->
+<div class="schedule-header">
+    <div class="row">
+        <div class="col-md-12">
+
+            <!-- Day Slot -->
+            <div class="day-slot">
+                <ul>
+                    @*<li class="left-arrow">
+                            <a href="">
+                                <i class="fa fa-chevron-left"></i>
+                            </a>
+                        </li>*@
+                    @foreach (var record in Model)
+                    {
+                        <li>
+                            <span>@record.AppointmentDay</span>
+                            <span class="slot-date">@record.AppointmentDate</span>
+                        </li>
+                    }
+                    @*<li class="right-arrow">
+                            <a href="">
+                                <i class="fa fa-chevron-right"></i>
+                            </a>
+                        </li>*@
+                </ul>
+            </div>
+            <!-- /Day Slot -->
+
+        </div>
+    </div>
+</div>
+<!-- /Schedule Header -->
+<!-- Schedule Content -->
+<div class="schedule-cont">
+    <div class="row">
+        <div class="col-md-12">
+
+            <!-- Time Slot -->
+            <div class="time-slot">
+                <ul class="clearfix" id="timings">
+                    @foreach (var record in Model)
+                    {
+                        <li>
+                            @foreach (var timing in record.DoctorTimings)
+                            {
+                                <a class="timing" href="#" onclick="EnableDisableTiming(this, @timing.Id, '@record.AppointmentDate')">
+                                    <span>@timing.StartTime</span>
+                                </a>
+                            }
+                        </li>
+                    }
+                </ul>
+            </div>
+            <!-- /Time Slot -->
+
+        </div>
+    </div>
+</div>
+<!-- /Schedule Content -->

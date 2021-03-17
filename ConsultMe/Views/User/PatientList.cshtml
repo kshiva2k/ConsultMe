@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewData["Title"] = "Patient List";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+@model ConsultMe.Domain.ViewModels.PatientViewModel
+<h1>Patient List</h1>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-7 col-lg-9 col-xl-12">
+                <div class="card">
+                    <div class="card-body pt-0">
+                        <form id="vendor-form" data-parsley-validate name="vendor-form">
+                            @Html.HiddenFor(i => i.Id)
+                            <label for="Name">Patient Name * :</label>
+                            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @type = "text" })
+
+                            <label for="Address">Age :</label>
+                            @Html.TextBoxFor(m => m.Age, new { @class = "form-control", @type = "number" })
+
+                            <label for="Gender">Gender *:</label>
+                            <select id="Gender" name="Gender" class="form-control" required="required">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </form>
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-7 col-lg-9 col-xl-12">
+                <div class="card">
+                    
+                        <center><button type="button" class="btn btn-primary mid_center" id="savepatientbutton" name="savepatientbutton">Save changes</button></center>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-7 col-lg-9 col-xl-12">
+                <div class="card">
+                    <div class="card-body pt-0">
+                        <div id="patientlist"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/Patients.js"></script>

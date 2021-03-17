@@ -1,0 +1,21 @@
+﻿<div class="card-body">
+    Choose Patient
+    <div class="row">
+        <div class="col-12 col-sm-4 col-md-6">
+            <select id="patientlist" name="patientlist" class="form-control">
+                @foreach (var record in (List<ConsultMe.Domain.ViewModels.PatientViewModel>)@ViewData["Patients"])
+                {
+                    <option value="@record.Id">@record.Name</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-sm-4 col-md-6">
+            <div class="form-group">
+                <label>Symptoms</label>
+                <input id="symptoms" name="symptoms" type="text" class="form-control" value="">
+            </div>
+        </div>
+    </div>
+</div>

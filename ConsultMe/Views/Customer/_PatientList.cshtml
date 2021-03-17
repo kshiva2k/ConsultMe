@@ -1,0 +1,58 @@
+﻿@model List<ConsultMe.Domain.ViewModels.AppointmentViewModel>
+<!-- Upcoming Appointment Tab -->
+<div class="tab-pane show active" id="upcoming-appointments">
+    <div class="card card-table mb-0">
+        <div class="card-body">
+            <div class="table-responsive">
+                <form id="formreview" name="formreview" method="post" action="/Customer/PatientReview">
+                    <input type="hidden" id="id" name="id" />
+                </form>
+                <table class="table table-hover table-center mb-0">
+                    <thead>
+                        <tr>
+                            <th>Patient Name</th>
+                            <th>Appt Date</th>
+                            <th>Symptoms</th>
+                            <th>Booking #</th>
+                            <th>Type</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                            <td>
+                                <h2 class="table-avatar">
+                                    <a href="#" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="/assets/img/patients/patient.jpg" alt="User Image"></a>
+                                    <a href="#">@item.PatientName</a>
+                                </h2>
+                            </td>
+                            <td>@item.Appointmentdate <span class="d-block text-info">@item.SlotTime</span></td>
+                            <td>@item.Symptoms</td>
+                            <td>@item.BookingNumber</td>
+                            <td>Normal</td>
+                            <td class="text-right">
+                                <div class="table-action">
+                                    <a href="javascript:Review(@item.Id);" class="btn btn-sm bg-success-light">
+                                        <i class="fas fa-check"></i> Review
+                                    </a>
+                                    <a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
+                                        <i class="fas fa-times"></i> Cancel
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function Review(apptid) {
+        $('#id').val(apptid);
+        $('#formreview').submit();
+    }
+</script>

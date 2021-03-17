@@ -1,0 +1,26 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "User list";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+<div class="content container-fluid">
+    <div class="col-sm-12">
+        <div class="row">
+            <button type="button" id="adduserbutton" name="adduserbutton" class="btn btn-primary" data-toggle="modal" data-target=".clinic-modal-lg">Add user</button>
+        </div>
+        <div class="row">
+            <div class="table-responsive" id="userlist">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade clinic-modal-lg" tabindex="-1" role="dialog" id="myuserclinicModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div id="divcontent" class="modal-content">
+
+        </div>
+    </div>
+</div>
+<script src="~/js/UserList.js"></script>

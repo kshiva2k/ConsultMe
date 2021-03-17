@@ -1,0 +1,28 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model List<ConsultMe.Domain.ViewModels.DoctorTimingsViewModel>;
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th class="column-title">Clinic name </th>
+            <th class="column-title">Start time </th>
+            <th class="column-title">End time </th>
+            <th class="column-title">Avg. review time </th>
+            <th class="column-title">Booking limit </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customerTiming in Model)
+        {
+            <tr>
+                <td>@customerTiming.ClinicName</td>
+                <td>@customerTiming.StartTime</td>
+                <td>@customerTiming.EndTime</td>
+                <td>@customerTiming.ReviewTime</td>
+                <td>@customerTiming.BookingLimit</td>
+            </tr>
+        }
+    </tbody>
+</table>

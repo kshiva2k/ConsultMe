@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewData["Title"] = "Clinic List";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content container-fluid">
+    <div class="col-sm-12">
+        <div class="row">
+            <button type="button" id="addclinicbutton" name="addclinicbutton" class="btn btn-primary" data-toggle="modal" data-target=".clinic-modal-lg">Add Clinic</button>
+        </div>
+        <div class="row">
+            <div class="table-responsive" id="cliniclist">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade clinic-modal-lg" tabindex="-1" role="dialog" id="myclinicModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div id="divcontent" class="modal-content">
+            
+        </div>
+    </div>
+</div>
+<script src="~/js/ClinicList.js"></script>
